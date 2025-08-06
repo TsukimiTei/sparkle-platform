@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparkle - My Effects</title>
+    <link rel="stylesheet" href="my-effects-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="my-effects-container">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="platform-name">Sparkle</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-text">Create</span>
+                </a>
+                <a href="income.html" class="nav-item">
+                    <span class="nav-text">Income</span>
+                </a>
+                <a href="my-effects.html" class="nav-item active">
+                    <span class="nav-text">My effect</span>
+                </a>
+                <a href="academy.html" class="nav-item">
+                    <span class="nav-text">Academy</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h2 class="page-title">My Effects</h2>
+                <p class="page-description">Manage and track your LoRA and Prompt effects</p>
+            </div>
+
+            <!-- Effect Type Tabs -->
+            <div class="effect-type-tabs">
+                <button class="effect-tab active" data-type="lora">
+                    <span class="tab-text">LoRA effect</span>
+                </button>
+                <button class="effect-tab" data-type="prompt">
+                    <span class="tab-text">Prompt effect</span>
+                </button>
+            </div>
+
+            <!-- LoRA Effect Content -->
+            <div class="effect-content active" id="lora-content">
+                <!-- LoRA Sub Categories -->
+                <div class="sub-category-tabs">
+                    <button class="sub-category-tab active" data-subcategory="lora">
+                        <span class="sub-tab-text">LoRA</span>
+                    </button>
+                    <button class="sub-category-tab" data-subcategory="dataset">
+                        <span class="sub-tab-text">Dataset</span>
+                    </button>
+                </div>
+
+                <!-- LoRA Sub Content -->
+                <div class="sub-content active" id="lora-sub-content">
+                    <!-- Filter Section -->
+                    <div class="filter-section">
+                        <div class="filter-header">
+                            <button class="filter-toggle" id="filter-toggle">
+                                <span class="filter-text">All 7</span>
+                                <span class="filter-arrow">▼</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Filter Dropdown -->
+                        <div class="filter-dropdown" id="filter-dropdown">
+                            <div class="filter-option" data-status="all">
+                                <span class="status-dot all"></span>
+                                <span class="option-text">All</span>
+                                <span class="option-count">7</span>
+                            </div>
+                            <div class="filter-option" data-status="training">
+                                <span class="status-dot training"></span>
+                                <span class="option-text">Training</span>
+                                <span class="option-count">1</span>
+                            </div>
+                            <div class="filter-option" data-status="in-queue">
+                                <span class="status-dot in-queue"></span>
+                                <span class="option-text">In Queue</span>
+                                <span class="option-count">1</span>
+                            </div>
+                            <div class="filter-option" data-status="trained">
+                                <span class="status-dot trained"></span>
+                                <span class="option-text">Trained</span>
+                                <span class="option-count">1</span>
+                            </div>
+                            <div class="filter-option" data-status="published">
+                                <span class="status-dot published"></span>
+                                <span class="option-text">Published</span>
+                                <span class="option-count">1</span>
+                            </div>
+                            <div class="filter-option" data-status="under-review">
+                                <span class="status-dot under-review"></span>
+                                <span class="option-text">Under Review</span>
+                                <span class="option-count">1</span>
+                            </div>
+                            <div class="filter-option" data-status="rejected">
+                                <span class="status-dot rejected"></span>
+                                <span class="option-text">Rejected</span>
+                                <span class="option-count">1</span>
+                            </div>
+                            <div class="filter-option" data-status="approved">
+                                <span class="status-dot approved"></span>
+                                <span class="option-text">Approved for Publishing</span>
+                                <span class="option-count">1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table Header -->
+                    <div class="table-header">
+                        <div class="header-cell cover">Cover</div>
+                        <div class="header-cell lora">LoRA</div>
+                        <div class="header-cell train-status">Train status</div>
+                        <div class="header-cell publish-status">Publish status</div>
+                        <div class="header-cell testset-result">Testset result</div>
+                        <div class="header-cell dataset">Dataset</div>
+                        <div class="header-cell action">Action</div>
+                    </div>
+
+                    <!-- Effects List -->
+                    <div class="effects-list">
+                        <!-- Under Review Row -->
+                        <div class="effect-row under-review" data-status="under-review">
+                            <div class="row-cell cover">
+                                <div class="video-thumbnail">
+                                    <img src="https://via.placeholder.com/80x60/d1d5db/ffffff?text=Cover" alt="Cover">
+                                    <div class="play-icon">▶</div>
+                                </div>
+                            </div>
+                            <div class="row-cell lora">
+                                <span class="lora-name">Nice Body</span>
+                            </div>
+                            <div class="row-cell train-status">
+                                <span class="status-text completed">Completed 39:40</span>
+                                <span class="credits">500 credits</span>
+                                <span class="date">8.4.2025</span>
+                            </div>
+                            <div class="row-cell publish-status">
+                                <span class="status-text under-review">Under review</span>
+                            </div>
+                            <div class="row-cell testset-result">
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell dataset">
+                                <span class="dataset-name">Bigboob females</span>
+                                <span class="video-count">13 videos</span>
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell action">
+                                <button class="btn btn-warning">Under review</button>
+                            </div>
+                        </div>
+
+                        <!-- Training Row -->
+                        <div class="effect-row training" data-status="training">
+                            <div class="row-cell cover">
+                                <div class="video-thumbnail placeholder">
+                                    <span class="placeholder-text">Training...</span>
+                                </div>
+                            </div>
+                            <div class="row-cell lora">
+                                <span class="lora-name">Nice Body</span>
+                            </div>
+                            <div class="row-cell train-status">
+                                <span class="status-text training">Training... 19:23</span>
+                                <span class="credits">500 credits</span>
+                            </div>
+                            <div class="row-cell publish-status">
+                                <span class="status-text required">Cover video required</span>
+                            </div>
+                            <div class="row-cell testset-result">
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell dataset">
+                                <span class="dataset-name">Bigboob females</span>
+                                <span class="video-count">13 videos</span>
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell action">
+                                <button class="btn btn-success">Publish</button>
+                            </div>
+                        </div>
+
+                        <!-- In Queue Row -->
+                        <div class="effect-row in-queue" data-status="in-queue">
+                            <div class="row-cell cover">
+                                <div class="video-thumbnail placeholder">
+                                    <span class="placeholder-text">In queue</span>
+                                </div>
+                            </div>
+                            <div class="row-cell lora">
+                                <span class="lora-name">Nice Body</span>
+                            </div>
+                            <div class="row-cell train-status">
+                                <span class="status-text in-queue">In queue --:--</span>
+                                <span class="credits">500 credits</span>
+                            </div>
+                            <div class="row-cell publish-status">
+                                <span class="status-text required">Cover video required</span>
+                            </div>
+                            <div class="row-cell testset-result">
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell dataset">
+                                <span class="dataset-name">Bigboob females</span>
+                                <span class="video-count">13 videos</span>
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell action">
+                                <button class="btn btn-success">1. Generate cover</button>
+                                <button class="btn btn-secondary">2. Publish</button>
+                            </div>
+                        </div>
+
+                        <!-- Rejected Row -->
+                        <div class="effect-row rejected" data-status="rejected">
+                            <div class="row-cell cover">
+                                <div class="video-thumbnail">
+                                    <img src="https://via.placeholder.com/80x60/d1d5db/ffffff?text=Cover" alt="Cover">
+                                    <div class="play-icon">▶</div>
+                                </div>
+                            </div>
+                            <div class="row-cell lora">
+                                <span class="lora-name">Nice Body</span>
+                            </div>
+                            <div class="row-cell train-status">
+                                <span class="status-text completed">Completed 39:40</span>
+                                <span class="credits">500 credits</span>
+                                <span class="date">8.4.2025</span>
+                            </div>
+                            <div class="row-cell publish-status">
+                                <span class="status-text rejected">Rejected</span>
+                                <span class="rejection-reason">Video cover is too sensitive</span>
+                            </div>
+                            <div class="row-cell testset-result">
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell dataset">
+                                <span class="dataset-name">Bigboob females</span>
+                                <span class="video-count">13 videos</span>
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell action">
+                                <button class="btn btn-success">1. Generate cover</button>
+                                <button class="btn btn-secondary">2. Publish</button>
+                            </div>
+                        </div>
+
+                        <!-- Approved for Publishing Row -->
+                        <div class="effect-row approved" data-status="approved">
+                            <div class="row-cell cover">
+                                <div class="video-thumbnail">
+                                    <img src="https://via.placeholder.com/80x60/d1d5db/ffffff?text=Cover" alt="Cover">
+                                    <div class="play-icon">▶</div>
+                                </div>
+                            </div>
+                            <div class="row-cell lora">
+                                <span class="lora-name">Nice Body</span>
+                            </div>
+                            <div class="row-cell train-status">
+                                <span class="status-text completed">Completed 39:40</span>
+                                <span class="credits">500 credits</span>
+                                <span class="date">8.4.2025</span>
+                            </div>
+                            <div class="row-cell publish-status">
+                                <span class="status-text approved">Approved for publishing</span>
+                            </div>
+                            <div class="row-cell testset-result">
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell dataset">
+                                <span class="dataset-name">Bigboob females</span>
+                                <span class="video-count">13 videos</span>
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell action">
+                                <button class="btn btn-success">Publish</button>
+                            </div>
+                        </div>
+
+                        <!-- Published Row -->
+                        <div class="effect-row published" data-status="published">
+                            <div class="row-cell cover">
+                                <div class="video-thumbnail">
+                                    <img src="https://via.placeholder.com/80x60/d1d5db/ffffff?text=Cover" alt="Cover">
+                                    <div class="play-icon">▶</div>
+                                </div>
+                            </div>
+                            <div class="row-cell lora">
+                                <span class="lora-name">Nice Body</span>
+                            </div>
+                            <div class="row-cell train-status">
+                                <span class="status-text completed">Completed 39:40</span>
+                                <span class="credits">500 credits</span>
+                                <span class="date">8.4.2025</span>
+                            </div>
+                            <div class="row-cell publish-status">
+                                <span class="status-text published">Published</span>
+                            </div>
+                            <div class="row-cell testset-result">
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell dataset">
+                                <span class="dataset-name">Bigboob females</span>
+                                <span class="video-count">13 videos</span>
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell action">
+                                <button class="btn btn-disabled">Published</button>
+                            </div>
+                        </div>
+
+                        <!-- Published No Cover Row -->
+                        <div class="effect-row published-no-cover" data-status="published">
+                            <div class="row-cell cover">
+                                <div class="video-thumbnail placeholder">
+                                    <span class="placeholder-text">Generate cover</span>
+                                </div>
+                            </div>
+                            <div class="row-cell lora">
+                                <span class="lora-name">Nice Body</span>
+                            </div>
+                            <div class="row-cell train-status">
+                                <span class="status-text completed">Completed 39:40</span>
+                                <span class="credits">500 credits</span>
+                                <span class="date">8.4.2025</span>
+                            </div>
+                            <div class="row-cell publish-status">
+                                <span class="status-text published">Published</span>
+                            </div>
+                            <div class="row-cell testset-result">
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell dataset">
+                                <span class="dataset-name">Bigboob females</span>
+                                <span class="video-count">13 videos</span>
+                                <button class="btn btn-outline">View</button>
+                            </div>
+                            <div class="row-cell action">
+                                <button class="btn btn-success">1. Generate cover</button>
+                                <button class="btn btn-secondary">2. Publish</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- Dataset Sub Content -->
+                <div class="sub-content" id="dataset-sub-content">
+                    <div class="dataset-content">
+                        <h3 class="dataset-title">Dataset Management</h3>
+                        <p class="dataset-description">Manage your training datasets for LoRA effects</p>
+                        <!-- Dataset content will be added here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompt Effect Content -->
+            <div class="effect-content" id="prompt-content">
+                <!-- Table Header -->
+                <div class="table-header">
+                    <div class="header-cell cover">Cover</div>
+                    <div class="header-cell lora">LoRA</div>
+                    <div class="header-cell publish-status">Publish status</div>
+                    <div class="header-cell testset-result">Testset result</div>
+                    <div class="header-cell prompt">Prompt</div>
+                    <div class="header-cell action">Action</div>
+                </div>
+
+                <!-- Prompt Effects List -->
+                <div class="effects-list">
+                    <!-- Prompt Effect Row 1 -->
+                    <div class="effect-row prompt-effect" data-status="prompt">
+                        <div class="row-cell cover">
+                            <div class="video-thumbnail placeholder">
+                                <span class="placeholder-text">Generate</span>
+                            </div>
+                        </div>
+                        <div class="row-cell lora">
+                            <span class="lora-name">Nice Body</span>
+                        </div>
+                        <div class="row-cell publish-status">
+                            <span class="status-text required">Cover video required</span>
+                        </div>
+                        <div class="row-cell testset-result">
+                            <button class="btn btn-outline">View</button>
+                        </div>
+                        <div class="row-cell prompt">
+                            <span class="prompt-text">A nicely standing women trying to take her clothes off</span>
+                        </div>
+                        <div class="row-cell action">
+                            <button class="btn btn-success">Publish</button>
+                        </div>
+                    </div>
+
+                    <!-- Prompt Effect Row 2 -->
+                    <div class="effect-row prompt-effect" data-status="prompt">
+                        <div class="row-cell cover">
+                            <div class="video-thumbnail placeholder">
+                                <span class="placeholder-text">Generate</span>
+                            </div>
+                        </div>
+                        <div class="row-cell lora">
+                            <span class="lora-name">Nice Body</span>
+                        </div>
+                        <div class="row-cell publish-status">
+                            <span class="status-text required">Cover video required</span>
+                        </div>
+                        <div class="row-cell testset-result">
+                            <button class="btn btn-outline">View</button>
+                        </div>
+                        <div class="row-cell prompt">
+                            <span class="prompt-text">A nicely standing women trying to take her clothes off</span>
+                        </div>
+                        <div class="row-cell action">
+                            <button class="btn btn-success">Publish</button>
+                        </div>
+                    </div>
+
+                    <!-- Prompt Effect Row 3 -->
+                    <div class="effect-row prompt-effect" data-status="prompt">
+                        <div class="row-cell cover">
+                            <div class="video-thumbnail placeholder">
+                                <span class="placeholder-text">Generate</span>
+                            </div>
+                        </div>
+                        <div class="row-cell lora">
+                            <span class="lora-name">Nice Body</span>
+                        </div>
+                        <div class="row-cell publish-status">
+                            <span class="status-text required">Cover video required</span>
+                        </div>
+                        <div class="row-cell testset-result">
+                            <button class="btn btn-outline">View</button>
+                        </div>
+                        <div class="row-cell prompt">
+                            <span class="prompt-text">A nicely standing women trying to take her clothes off</span>
+                        </div>
+                        <div class="row-cell action">
+                            <button class="btn btn-success">Publish</button>
+                        </div>
+                    </div>
+
+                    <!-- Prompt Effect Row 4 -->
+                    <div class="effect-row prompt-effect" data-status="prompt">
+                        <div class="row-cell cover">
+                            <div class="video-thumbnail placeholder">
+                                <span class="placeholder-text">Generate</span>
+                            </div>
+                        </div>
+                        <div class="row-cell lora">
+                            <span class="lora-name">Nice Body</span>
+                        </div>
+                        <div class="row-cell publish-status">
+                            <span class="status-text required">Cover video required</span>
+                        </div>
+                        <div class="row-cell testset-result">
+                            <button class="btn btn-outline">View</button>
+                        </div>
+                        <div class="row-cell prompt">
+                            <span class="prompt-text">A nicely standing women trying to take her clothes off</span>
+                        </div>
+                        <div class="row-cell action">
+                            <button class="btn btn-success">Publish</button>
+                        </div>
+                    </div>
+
+                    <!-- Prompt Effect Row 5 -->
+                    <div class="effect-row prompt-effect" data-status="prompt">
+                        <div class="row-cell cover">
+                            <div class="video-thumbnail placeholder">
+                                <span class="placeholder-text">Generate</span>
+                            </div>
+                        </div>
+                        <div class="row-cell lora">
+                            <span class="lora-name">Nice Body</span>
+                        </div>
+                        <div class="row-cell publish-status">
+                            <span class="status-text required">Cover video required</span>
+                        </div>
+                        <div class="row-cell testset-result">
+                            <button class="btn btn-outline">View</button>
+                        </div>
+                        <div class="row-cell prompt">
+                            <span class="prompt-text">A nicely standing women trying to take her clothes off</span>
+                        </div>
+                        <div class="row-cell action">
+                            <button class="btn btn-success">Publish</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="my-effects.js"></script>
+</body>
+</html> 

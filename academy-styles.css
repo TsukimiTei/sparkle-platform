@@ -1,0 +1,392 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* Academy Layout */
+.academy-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+}
+
+/* Left Sidebar */
+.sidebar {
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    padding: 2rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    margin-bottom: 2rem;
+}
+
+.platform-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+/* Main Platform Navigation */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: #000000;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-item.active {
+    background: #000000;
+    color: white;
+}
+
+.nav-item:hover:not(.active) {
+    background: #f3f4f6;
+}
+
+.nav-text {
+    font-weight: 500;
+}
+
+/* Academy Sub Navigation */
+.academy-sub-nav {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.sub-nav-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+.sub-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-group {
+    margin-bottom: 0.5rem;
+}
+
+.sub-nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: #000000;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.sub-nav-item.active {
+    background: #f3f4f6;
+    color: #000000;
+    font-weight: 600;
+}
+
+.sub-nav-item:hover:not(.active) {
+    background: #f9fafb;
+    color: #374151;
+}
+
+.sub-nav-text {
+    font-weight: inherit;
+}
+
+/* Sub-sub Navigation */
+.sub-sub-nav {
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.sub-sub-nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #6b7280;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.sub-sub-nav-item.active {
+    background: #f3f4f6;
+    color: #000000;
+    font-weight: 500;
+}
+
+.sub-sub-nav-item:hover:not(.active) {
+    background: #f9fafb;
+    color: #374151;
+}
+
+.sub-sub-nav-text {
+    font-weight: inherit;
+}
+
+/* Main Content Area */
+.main-content {
+    padding: 3rem;
+    background: #ffffff;
+    overflow-y: auto;
+    max-width: 800px;
+}
+
+.content-section {
+    margin-bottom: 3rem;
+}
+
+.section-header {
+    margin-bottom: 1.5rem;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 1.5rem;
+}
+
+.content-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #374151;
+}
+
+.content-text p {
+    margin-bottom: 1rem;
+}
+
+.content-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Examples Grid */
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.example-placeholder {
+    aspect-ratio: 4/3;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+/* Steps List */
+.steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.step-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: #000000;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 1rem;
+}
+
+.step-details {
+    list-style: none;
+    padding-left: 0;
+}
+
+.step-details li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #374151;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.step-details li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.step-details li:last-child {
+    margin-bottom: 0;
+}
+
+/* Tips Section */
+.tips-section {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.tips-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 1rem;
+}
+
+.tips-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tips-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #374151;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.tips-list li:before {
+    content: "💡";
+    position: absolute;
+    left: 0;
+    font-size: 1rem;
+}
+
+.tips-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .academy-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+    
+    .main-content {
+        padding: 2rem;
+        max-width: 100%;
+    }
+    
+    .examples-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .step-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .step-number {
+        align-self: flex-start;
+    }
+    
+    .examples-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-text {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .step-title {
+        font-size: 1.125rem;
+    }
+    
+    .tips-section {
+        padding: 1rem;
+    }
+} 

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparkle Creator Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="platform-name">Sparkle</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-text">Create</span>
+                </a>
+                <a href="income.html" class="nav-item">
+                    <span class="nav-text">Income</span>
+                </a>
+                <a href="my-effects.html" class="nav-item">
+                    <span class="nav-text">My effect</span>
+                </a>
+                <a href="academy.html" class="nav-item">
+                    <span class="nav-text">Academy</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-dashboard">
+            <!-- My Earning Section -->
+            <section class="earning-section">
+                <h2 class="section-title">My earning</h2>
+                <div class="earning-stats">
+                    <div class="stat-card">
+                        <span class="stat-label">Total earning</span>
+                        <span class="stat-value">$4487.69</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Today</span>
+                        <span class="stat-value">$87.11</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Effect created</span>
+                        <span class="stat-value">17</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Start Creating Effect Section -->
+            <section class="create-section">
+                <h2 class="section-title">Start creating effect</h2>
+                <div class="create-options">
+                    <div class="create-card">
+                        <h3 class="create-title">LoRA-based video effect</h3>
+                    </div>
+                    <div class="create-card">
+                        <h3 class="create-title">Prompt-based video effect</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Popular Effects Section -->
+            <section class="popular-effects-section">
+                <h2 class="section-title">Popular effects</h2>
+                
+                <!-- Category Tabs -->
+                <div class="category-tabs">
+                    <button class="category-tab active">Dance</button>
+                    <button class="category-tab">Funny</button>
+                    <button class="category-tab">Beauty</button>
+                    <button class="category-tab">Creative</button>
+                    <button class="category-tab">Action & Movement</button>
+                    <button class="category-tab">Transform</button>
+                </div>
+
+                <!-- Dance Category Content -->
+                <div class="category-content">
+                    <h3 class="category-subtitle">Dance</h3>
+                    <p class="category-description">
+                        Adding dance elements, movements, or dance-style effects to the person, animal, or any object in a photo to make the subjects in the photo come alive and appear to be dancing.
+                    </p>
+                    <button class="create-category-btn">Create dance category effects</button>
+                    
+                    <!-- Video Effects Grid -->
+                    <div class="effects-grid">
+                        <!-- Featured Video Card -->
+                        <div class="effect-card featured">
+                            <div class="video-thumbnail">
+                                <img src="https://via.placeholder.com/240x320/d1d5db/ffffff?text=Dance+Video" alt="Dance Effect Video">
+                                <div class="play-icon">▶</div>
+                                <div class="rank-badge">#1 Dance</div>
+                                <div class="earnings-overlay">
+                                    <div class="earning-info">
+                                        <span class="total-earn">$290.4 Total earn</span>
+                                        <span class="today-earn">$14.3 Today</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="effect-info">
+                                <h4 class="effect-name">Arch move</h4>
+                                <div class="effect-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Popularity</span>
+                                        <span class="stat-value">7.8k</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Use</span>
+                                        <span class="stat-value">4.7k</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Paid</span>
+                                        <span class="stat-value">127</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Placeholder Cards -->
+                        <div class="effect-card placeholder">
+                            <div class="video-thumbnail">
+                                <img src="https://via.placeholder.com/240x320/d1d5db/ffffff?text=Video+2" alt="Video Placeholder">
+                            </div>
+                        </div>
+                        <div class="effect-card placeholder">
+                            <div class="video-thumbnail">
+                                <img src="https://via.placeholder.com/240x320/d1d5db/ffffff?text=Video+3" alt="Video Placeholder">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Sidebar: Creator Rank -->
+        <aside class="rank-sidebar">
+            <h2 class="section-title">Creator Rank</h2>
+            <div class="rank-table">
+                <div class="rank-header">
+                    <span class="rank-col">Earning</span>
+                    <span class="rank-col">Popularity</span>
+                    <span class="rank-col">Total created</span>
+                </div>
+                <div class="rank-list">
+                    <!-- Rank Items -->
+                    <div class="rank-item">
+                        <div class="creator-info">
+                            <img src="https://via.placeholder.com/40x40/d1d5db/ffffff?text=👤" alt="Creator Avatar" class="creator-avatar">
+                            <span class="creator-name">Name</span>
+                        </div>
+                        <div class="rank-number">#1</div>
+                    </div>
+                    <div class="rank-item">
+                        <div class="creator-info">
+                            <img src="https://via.placeholder.com/40x40/d1d5db/ffffff?text=👤" alt="Creator Avatar" class="creator-avatar">
+                            <span class="creator-name">Name</span>
+                        </div>
+                        <div class="rank-number">#1</div>
+                    </div>
+                    <div class="rank-item">
+                        <div class="creator-info">
+                            <img src="https://via.placeholder.com/40x40/d1d5db/ffffff?text=👤" alt="Creator Avatar" class="creator-avatar">
+                            <span class="creator-name">Name</span>
+                        </div>
+                        <div class="rank-number">#1</div>
+                    </div>
+                    <div class="rank-item">
+                        <div class="creator-info">
+                            <img src="https://via.placeholder.com/40x40/d1d5db/ffffff?text=👤" alt="Creator Avatar" class="creator-avatar">
+                            <span class="creator-name">Name</span>
+                        </div>
+                        <div class="rank-number">#1</div>
+                    </div>
+                    <div class="rank-item">
+                        <div class="creator-info">
+                            <img src="https://via.placeholder.com/40x40/d1d5db/ffffff?text=👤" alt="Creator Avatar" class="creator-avatar">
+                            <span class="creator-name">Name</span>
+                        </div>
+                        <div class="rank-number">#1</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</body>
+</html> 

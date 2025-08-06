@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparkle - Create</title>
+    <link rel="stylesheet" href="create-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="create-container">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="platform-name">Sparkle</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="create.html" class="nav-item active">
+                    <span class="nav-text">Create</span>
+                </a>
+                <a href="income.html" class="nav-item">
+                    <span class="nav-text">Income</span>
+                </a>
+                <a href="my-effects.html" class="nav-item">
+                    <span class="nav-text">My effect</span>
+                </a>
+                <a href="academy.html" class="nav-item">
+                    <span class="nav-text">Academy</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h2 class="page-title">Create Your Effect</h2>
+                <p class="page-description">Upload your dataset and train a custom LoRA effect</p>
+            </div>
+
+            <!-- Create Form -->
+            <div class="create-form">
+                <!-- Step 1: Dataset Upload -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="step-number">1</div>
+                        <h3 class="section-title">Upload Dataset</h3>
+                        <div class="upload-status">
+                            <span class="upload-count" id="upload-count">0/15 videos</span>
+                            <span class="upload-limit">Maximum 15 videos allowed</span>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-area" id="upload-area">
+                        <div class="upload-content">
+                            <div class="upload-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                            </div>
+                            <h4 class="upload-title">Drop your videos here</h4>
+                            <p class="upload-description">or click to browse files</p>
+                            <p class="upload-hint">Supports MP4, MOV, AVI (Max 50MB per file, Max 15 videos)</p>
+                        </div>
+                        <input type="file" id="file-input" multiple accept="video/*" class="file-input">
+                    </div>
+
+                    <!-- Uploaded Files List -->
+                    <div class="uploaded-files" id="uploaded-files">
+                        <!-- Files will be added here dynamically -->
+                    </div>
+
+                    <!-- Batch Labeling Controls -->
+                    <div class="batch-controls" id="batch-controls" style="display: none;">
+                        <div class="batch-header">
+                            <h4>AI Labeling</h4>
+                            <p>Use AI to automatically label your videos</p>
+                        </div>
+                        <div class="batch-buttons">
+                            <button class="batch-btn" id="label-all-btn">
+                                <span class="btn-icon">🤖</span>
+                                <span class="btn-text">Label All Videos</span>
+                            </button>
+                            <button class="batch-btn secondary" id="clear-all-labels-btn">
+                                <span class="btn-icon">🗑️</span>
+                                <span class="btn-text">Clear All Labels</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Training Configuration -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="step-number">2</div>
+                        <h3 class="section-title">Training Configuration</h3>
+                    </div>
+
+                    <div class="config-grid">
+                        <!-- Effect Name -->
+                        <div class="config-item">
+                            <label class="config-label">Effect Name</label>
+                            <input type="text" class="config-input" placeholder="Enter your effect name" id="effect-name">
+                        </div>
+
+                        <!-- Trigger Word -->
+                        <div class="config-item">
+                            <label class="config-label">Trigger Word</label>
+                            <input type="text" class="config-input" placeholder="e.g., myeffect" id="trigger-word">
+                        </div>
+
+                        <!-- Adapter Rank -->
+                        <div class="config-item">
+                            <label class="config-label">Adapter Rank</label>
+                            <select class="config-select" id="adapter-rank">
+                                <option value="8">8</option>
+                                <option value="16" selected>16</option>
+                                <option value="32">32</option>
+                                <option value="64">64</option>
+                            </select>
+                        </div>
+
+                        <!-- Training Epochs -->
+                        <div class="config-item">
+                            <label class="config-label">Training Epochs</label>
+                            <select class="config-select" id="training-epochs">
+                                <option value="30">30</option>
+                                <option value="60" selected>60</option>
+                                <option value="90">90</option>
+                                <option value="120">120</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Training Cost Estimate -->
+                    <div class="cost-estimate">
+                        <div class="cost-header">
+                            <h4 class="cost-title">Training Cost Estimate</h4>
+                            <span class="cost-amount">500 credits</span>
+                        </div>
+                        <div class="cost-breakdown">
+                            <div class="cost-item">
+                                <span class="cost-label">Base cost:</span>
+                                <span class="cost-value">300 credits</span>
+                            </div>
+                            <div class="cost-item">
+                                <span class="cost-label">Additional epochs:</span>
+                                <span class="cost-value">200 credits</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Preview & Submit -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="step-number">3</div>
+                        <h3 class="section-title">Preview & Submit</h3>
+                    </div>
+
+                    <div class="preview-section">
+                        <div class="preview-card">
+                            <div class="preview-header">
+                                <h4 class="preview-title">Training Summary</h4>
+                            </div>
+                            <div class="preview-content">
+                                <div class="preview-item">
+                                    <span class="preview-label">Dataset:</span>
+                                    <span class="preview-value" id="preview-dataset">0 videos</span>
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-label">Effect Name:</span>
+                                    <span class="preview-value" id="preview-name">-</span>
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-label">Trigger Word:</span>
+                                    <span class="preview-value" id="preview-trigger">-</span>
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-label">Adapter Rank:</span>
+                                    <span class="preview-value" id="preview-rank">16</span>
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-label">Training Epochs:</span>
+                                    <span class="preview-value" id="preview-epochs">60</span>
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-label">Estimated Time:</span>
+                                    <span class="preview-value">2-3 hours</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Training Status -->
+                    <div class="training-status" id="training-status" style="display: none;">
+                        <div class="status-card">
+                            <div class="status-header">
+                                <h4>Training in Progress</h4>
+                                <div class="status-indicator">
+                                    <div class="spinner"></div>
+                                    <span>Processing...</span>
+                                </div>
+                            </div>
+                            <div class="status-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-fill"></div>
+                                </div>
+                                <span class="progress-text" id="progress-text">0%</span>
+                            </div>
+                            <p class="status-message">Your effect is being trained. This may take 2-3 hours.</p>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="submit-section" id="submit-section">
+                        <button class="submit-btn" id="submit-btn" disabled>
+                            <span class="btn-text">Start Training</span>
+                            <span class="btn-cost">500 credits</span>
+                        </button>
+                        <p class="submit-hint">Upload at least 8 videos and complete all required fields to start training</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="create.js"></script>
+</body>
+</html> 

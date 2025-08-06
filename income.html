@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparkle - Income</title>
+    <link rel="stylesheet" href="income-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="income-container">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="platform-name">Sparkle</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-text">Create</span>
+                </a>
+                <a href="income.html" class="nav-item active">
+                    <span class="nav-text">Income</span>
+                </a>
+                <a href="my-effects.html" class="nav-item">
+                    <span class="nav-text">My effect</span>
+                </a>
+                <a href="academy.html" class="nav-item">
+                    <span class="nav-text">Academy</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Creator Overview Section -->
+            <section class="creator-overview">
+                <div class="profile-header">
+                    <div class="avatar-placeholder"></div>
+                    <div class="profile-info">
+                        <h2 class="nickname">NICKNAME</h2>
+                        <div class="level-info">
+                            <span class="level-text">Lv.1</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%"></div>
+                            </div>
+                            <span class="progress-text">30%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <span class="metric-value">13</span>
+                        <span class="metric-label">Published</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value">29</span>
+                        <span class="metric-label">Trained</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value">217</span>
+                        <span class="metric-label">Total likes</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value">36k</span>
+                        <span class="metric-label">Total uses</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value">22k</span>
+                        <span class="metric-label">Total earn</span>
+                    </div>
+                </div>
+
+                <!-- Current Balance -->
+                <div class="balance-section boxed">
+                    <div class="balance-info">
+                        <span class="balance-label">My balance</span>
+                        <span class="balance-amount">$4487</span>
+                    </div>
+                    <button class="cash-out-btn">Cash out</button>
+                </div>
+
+                <!-- Total Earning Chart -->
+                <div class="earning-chart-section boxed">
+                    <div class="chart-content">
+                        <div class="donut-chart-wrap">
+                            <div class="donut-chart ring">
+                                <svg width="180" height="180" viewBox="0 0 180 180">
+                                    <circle cx="90" cy="90" r="80" stroke="#F82CB7" stroke-width="20" fill="none" stroke-dasharray="251.2 100" stroke-dashoffset="0"/>
+                                    <circle cx="90" cy="90" r="80" stroke="#FFC120" stroke-width="20" fill="none" stroke-dasharray="100 251.2" stroke-dashoffset="-251.2"/>
+                                </svg>
+                                <div class="chart-center">
+                                    <span class="total-earning">$24,482</span>
+                                    <span class="total-label">Total Earning</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color lora"></div>
+                                <span class="legend-label">LoRA effect</span>
+                                <span class="legend-value">$19,400</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color prompt"></div>
+                                <span class="legend-label">Prompt LoRA</span>
+                                <span class="legend-value">$5,082</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="view-detail-btn" onclick="window.location.href='income-detail.html'">View detail</button>
+                </div>
+            </section>
+
+            <!-- Earning Records Section -->
+            <section class="earning-records">
+                <h2 class="section-title">Earning records</h2>
+                <div class="records-table">
+                    <div class="table-header">
+                        <span class="header-col">Date</span>
+                        <span class="header-col">Earning</span>
+                        <span class="header-col">Detail</span>
+                    </div>
+                    <div class="table-body">
+                        <div class="table-row">
+                            <span class="date-col">8.6</span>
+                            <span class="earning-col positive">$47.94</span>
+                            <button class="view-btn" onclick="window.location.href='income-detail.html'">View</button>
+                        </div>
+                        <div class="table-row">
+                            <span class="date-col">8.5</span>
+                            <span class="earning-col positive">$81.4</span>
+                            <button class="view-btn" onclick="window.location.href='income-detail.html'">View</button>
+                        </div>
+                        <div class="table-row">
+                            <span class="date-col">8.4</span>
+                            <span class="earning-col positive">$7.94</span>
+                            <button class="view-btn" onclick="window.location.href='income-detail.html'">View</button>
+                        </div>
+                        <div class="table-row">
+                            <span class="date-col">8.3</span>
+                            <span class="earning-col positive">$27.9</span>
+                            <button class="view-btn" onclick="window.location.href='income-detail.html'">View</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQs Section -->
+            <section class="faqs-section">
+                <h2 class="section-title">FAQs</h2>
+                <div class="faq-list">
+                    <div class="faq-item expanded">
+                        <div class="faq-question">
+                            <span class="question-text">What is effect?</span>
+                            <span class="chevron">▲</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Video effects are creative enhancements that can be applied to photos or videos to add motion, style, or visual elements. These effects are created using AI technology and can transform static images into dynamic content. Creators can train custom effects using LoRA (Low-Rank Adaptation) or prompt-based methods, allowing for unique and personalized video transformations.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-text">What is effect?</span>
+                            <span class="chevron">▶</span>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="question-text">What is effect?</span>
+                            <span class="chevron">▶</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Sidebar: My Top Effects -->
+        <aside class="top-effects-sidebar">
+            <h2 class="sidebar-title">MY TOP EFFECTS</h2>
+            <div class="effects-list">
+                <!-- Effect Card 1 -->
+                <div class="effect-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/240x320/d1d5db/ffffff?text=Top+Effect+1" alt="Top Effect 1">
+                        <div class="play-icon">▶</div>
+                        <div class="earnings-overlay">
+                            <div class="earning-info">
+                                <span class="total-earn">$290.4 Total earn</span>
+                                <span class="today-earn">$14.3 Today</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="effect-stats">
+                        <div class="stat-row">
+                            <span class="stat-value">7.8k</span>
+                            <span class="stat-label">Popularity</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-value">4.7k</span>
+                            <span class="stat-label">Use</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-value">127</span>
+                            <span class="stat-label">Paid</span>
+                        </div>
+                    </div>
+                    <div class="effect-tags">
+                        <span class="tag">Dance</span>
+                        <span class="tag">Creative</span>
+                        <span class="tag">Animal</span>
+                    </div>
+                </div>
+
+                <!-- Effect Card 2 -->
+                <div class="effect-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/240x320/d1d5db/ffffff?text=Top+Effect+2" alt="Top Effect 2">
+                        <div class="play-icon">▶</div>
+                        <div class="earnings-overlay">
+                            <div class="earning-info">
+                                <span class="total-earn">$180.2 Total earn</span>
+                                <span class="today-earn">$8.7 Today</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="effect-stats">
+                        <div class="stat-row">
+                            <span class="stat-value">5.2k</span>
+                            <span class="stat-label">Popularity</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-value">3.1k</span>
+                            <span class="stat-label">Use</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-value">89</span>
+                            <span class="stat-label">Paid</span>
+                        </div>
+                    </div>
+                    <div class="effect-tags">
+                        <span class="tag">Funny</span>
+                        <span class="tag">Creative</span>
+                    </div>
+                </div>
+
+                <!-- Effect Card 3 -->
+                <div class="effect-card">
+                    <div class="video-thumbnail">
+                        <img src="https://via.placeholder.com/240x320/d1d5db/ffffff?text=Top+Effect+3" alt="Top Effect 3">
+                        <div class="play-icon">▶</div>
+                        <div class="earnings-overlay">
+                            <div class="earning-info">
+                                <span class="total-earn">$145.8 Total earn</span>
+                                <span class="today-earn">$6.2 Today</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="effect-stats">
+                        <div class="stat-row">
+                            <span class="stat-value">4.1k</span>
+                            <span class="stat-label">Popularity</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-value">2.8k</span>
+                            <span class="stat-label">Use</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-value">67</span>
+                            <span class="stat-label">Paid</span>
+                        </div>
+                    </div>
+                    <div class="effect-tags">
+                        <span class="tag">Beauty</span>
+                        <span class="tag">Transform</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</body>
+</html> 

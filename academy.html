@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparkle Academy</title>
+    <link rel="stylesheet" href="academy-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="academy-container">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="platform-name">Sparkle</h1>
+            </div>
+            
+            <!-- Main Platform Navigation -->
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-text">Create</span>
+                </a>
+                <a href="income.html" class="nav-item">
+                    <span class="nav-text">Income</span>
+                </a>
+                <a href="my-effects.html" class="nav-item">
+                    <span class="nav-text">My effect</span>
+                </a>
+                <a href="academy.html" class="nav-item active">
+                    <span class="nav-text">Academy</span>
+                </a>
+            </nav>
+            
+            <!-- Academy Sub Navigation -->
+            <div class="academy-sub-nav">
+                <h3 class="sub-nav-title">Academy</h3>
+                <nav class="sub-nav">
+                    <div class="nav-group">
+                        <a href="#" class="sub-nav-item active">
+                            <span class="sub-nav-text">Get started</span>
+                        </a>
+                        <div class="sub-sub-nav">
+                            <a href="#" class="sub-sub-nav-item active">
+                                <span class="sub-sub-nav-text">Overview</span>
+                            </a>
+                            <a href="#" class="sub-sub-nav-item">
+                                <span class="sub-sub-nav-text">LoRA effect</span>
+                            </a>
+                            <a href="#" class="sub-sub-nav-item">
+                                <span class="sub-sub-nav-text">Prompt effect</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-group">
+                        <a href="#" class="sub-nav-item">
+                            <span class="sub-nav-text">Income</span>
+                        </a>
+                        <div class="sub-sub-nav">
+                            <a href="#" class="sub-sub-nav-item">
+                                <span class="sub-sub-nav-text">How do I earn</span>
+                            </a>
+                            <a href="#" class="sub-sub-nav-item">
+                                <span class="sub-sub-nav-text">Cash out</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-group">
+                        <a href="#" class="sub-nav-item">
+                            <span class="nav-text">Creator</span>
+                        </a>
+                        <div class="sub-sub-nav">
+                            <a href="#" class="sub-sub-nav-item">
+                                <span class="sub-sub-nav-text">Leveling</span>
+                            </a>
+                            <a href="#" class="sub-sub-nav-item">
+                                <span class="sub-sub-nav-text">Cash out</span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- LoRA Effect Section -->
+            <section class="content-section">
+                <div class="section-header">
+                    <h3 class="section-subtitle">LoRA effect</h3>
+                    <h2 class="section-title">Train a LoRA video effect</h2>
+                </div>
+                
+                <div class="content-text">
+                    <p>Video LoRA is a lightweight 'plugin' method for enhancing a pre-trained image- or video-generation model.</p>
+                    <p>This 'plugin' is very small and only requires training a tiny subset of the model's parameters rather than retraining the entire large model.</p>
+                    <p>The training process is like installing a small add-on that teaches the model new motions or styles—such as learning a dance routine.</p>
+                    <p>Once trained, a Video LoRA captures a specific motion or style and can be applied repeatedly to any compatible photo to reproduce the same effect.</p>
+                </div>
+            </section>
+
+            <!-- Examples Section -->
+            <section class="content-section">
+                <h2 class="section-title">Examples of good data-set</h2>
+                <div class="examples-grid">
+                    <div class="example-placeholder"></div>
+                    <div class="example-placeholder"></div>
+                    <div class="example-placeholder"></div>
+                    <div class="example-placeholder"></div>
+                </div>
+            </section>
+
+            <!-- Get Started Section -->
+            <section class="content-section">
+                <h2 class="section-title">Get started</h2>
+                
+                <div class="steps-list">
+                    <!-- Step 1 -->
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Decide What Effect You Want</h3>
+                            <ul class="step-details">
+                                <li>Pick a clear motion (dance, wave, spin)</li>
+                                <li>Ask: "What should the video do?"</li>
+                                <li>Write a one-sentence description</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Understand What a Dataset Is</h3>
+                            <ul class="step-details">
+                                <li>A dataset is a collection of example videos/frames</li>
+                                <li>Think of them as "practice clips"</li>
+                                <li>Each video teaches the LoRA plugin</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Find or Create Your Video Dataset</h3>
+                            <ul class="step-details">
+                                <li>Search online for Creative Commons or royalty-free clips (Pixabay, Pexels, YouTube)</li>
+                                <li>Look for clips that match your effect</li>
+                                <li>Aim for 50-200 short clips (5-10 seconds)</li>
+                                <li>Record videos if needed</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Prepare Your Dataset</h3>
+                            <ul class="step-details">
+                                <li>Download/collect clips into one folder</li>
+                                <li>Use a video-to-frames tool (2-5 fps)</li>
+                                <li>Check for clear frames (good lighting, no blurry motion)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Train Your Video LoRA</h3>
+                            <ul class="step-details">
+                                <li>Open a LoRA-supporting tool</li>
+                                <li>Load the base model</li>
+                                <li>Choose "Fine-tune with LoRA"</li>
+                                <li>Point to the frames folder</li>
+                                <li>Name the template</li>
+                                <li>Hit "Train"</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Test and Apply</h3>
+                            <ul class="step-details">
+                                <li>Load the new LoRA template after training</li>
+                                <li>Input a new photo/clip</li>
+                                <li>Render to see the effect applied</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tips Section -->
+                <div class="tips-section">
+                    <h3 class="tips-title">Tips</h3>
+                    <ul class="tips-list">
+                        <li>Start with a narrow effect (one dance move, not entire routines)</li>
+                        <li>Quality over quantity—better to have 50 clear clips than 200 blurry ones</li>
+                        <li>Keep your dataset organized and well-labeled</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html> 

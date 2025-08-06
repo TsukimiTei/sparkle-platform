@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparkle - Income Detail</title>
+    <link rel="stylesheet" href="income-detail-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="income-detail-container">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="platform-name">Sparkle</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-text">Create</span>
+                </a>
+                <a href="income.html" class="nav-item active">
+                    <span class="nav-text">Income</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-text">My effect</span>
+                </a>
+                <a href="academy.html" class="nav-item">
+                    <span class="nav-text">Academy</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header with Back Button -->
+            <div class="page-header">
+                <button class="back-btn" onclick="window.location.href='income.html'">←</button>
+                <h1 class="page-title">Income detail</h1>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs-container">
+                <button class="tab-btn active">Today</button>
+                <button class="tab-btn">Lifetime</button>
+            </div>
+
+            <!-- Income Detail Section -->
+            <div class="income-detail-section">
+                <!-- Left: Donut Chart -->
+                <div class="chart-section">
+                    <div class="donut-chart">
+                        <div class="chart-center">
+                            <span class="total-amount">$47.94</span>
+                            <span class="date">Aug.8.2025</span>
+                        </div>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color use"></div>
+                            <span class="legend-label">Use</span>
+                            <span class="legend-value">$40.54</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color pay-conversion"></div>
+                            <span class="legend-label">Pay conversion</span>
+                            <span class="legend-value">$7.4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Calendar -->
+                <div class="calendar-section">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <h3 class="calendar-title">Aug 2025</h3>
+                        </div>
+                        <div class="calendar-weekdays">
+                            <span>S</span>
+                            <span>M</span>
+                            <span>T</span>
+                            <span>W</span>
+                            <span>T</span>
+                            <span>F</span>
+                            <span>S</span>
+                        </div>
+                        <div class="calendar-days">
+                            <div class="day-item">
+                                <span class="day-number">1</span>
+                                <span class="day-amount">$47.94</span>
+                            </div>
+                            <div class="day-item">
+                                <span class="day-number">2</span>
+                                <span class="day-amount">$27.94</span>
+                            </div>
+                            <div class="day-item">
+                                <span class="day-number">3</span>
+                                <span class="day-amount">$27.94</span>
+                            </div>
+                            <div class="day-item">
+                                <span class="day-number">4</span>
+                                <span class="day-amount">$27.94</span>
+                            </div>
+                            <div class="day-item">
+                                <span class="day-number">5</span>
+                                <span class="day-amount">$47.94</span>
+                            </div>
+                            <div class="day-item">
+                                <span class="day-number">6</span>
+                                <span class="day-amount">$27.94</span>
+                            </div>
+                            <div class="day-item">
+                                <span class="day-number">7</span>
+                                <span class="day-amount">$47.94</span>
+                            </div>
+                            <div class="day-item selected">
+                                <span class="day-number">8</span>
+                                <span class="day-amount">$47.94</span>
+                            </div>
+                            <div class="day-item">
+                                <span class="day-number">9</span>
+                                <span class="day-amount">$47.94</span>
+                            </div>
+                            <div class="day-item">
+                                <span class="day-number">10</span>
+                                <span class="day-amount">$27.94</span>
+                            </div>
+                            <div class="day-item">
+                                <span class="day-number">11</span>
+                                <span class="day-amount">$27.94</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contribution Section -->
+            <section class="contribution-section">
+                <h2 class="section-title">Contribution</h2>
+                <div class="contribution-grid">
+                    <!-- Contribution Card 1 -->
+                    <div class="contribution-card">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/80x80/d1d5db/ffffff?text=Cat" alt="Cat dance">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Cat dance</h3>
+                            <span class="card-amount">$21.54</span>
+                            <div class="card-stats">
+                                <span class="stat">7.8k Popuparity</span>
+                                <span class="stat">4.7k Use</span>
+                                <span class="stat">127 Paid</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contribution Card 2 -->
+                    <div class="contribution-card">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/80x80/d1d5db/ffffff?text=Cat" alt="Cat dance">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Cat dance</h3>
+                            <span class="card-amount">$21.54</span>
+                            <div class="card-stats">
+                                <span class="stat">7.8k Popuparity</span>
+                                <span class="stat">4.7k Use</span>
+                                <span class="stat">127 Paid</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contribution Card 3 -->
+                    <div class="contribution-card">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/80x80/d1d5db/ffffff?text=Cat" alt="Cat dance">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Cat dance</h3>
+                            <span class="card-amount">$21.54</span>
+                            <div class="card-stats">
+                                <span class="stat">7.8k Popuparity</span>
+                                <span class="stat">4.7k Use</span>
+                                <span class="stat">127 Paid</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contribution Card 4 -->
+                    <div class="contribution-card">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/80x80/d1d5db/ffffff?text=Cat" alt="Cat dance">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Cat dance</h3>
+                            <span class="card-amount">$21.54</span>
+                            <div class="card-stats">
+                                <span class="stat">7.8k Popuparity</span>
+                                <span class="stat">4.7k Use</span>
+                                <span class="stat">127 Paid</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contribution Card 5 -->
+                    <div class="contribution-card">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/80x80/d1d5db/ffffff?text=Cat" alt="Cat dance">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Cat dance</h3>
+                            <span class="card-amount">$21.54</span>
+                            <div class="card-stats">
+                                <span class="stat">7.8k Popuparity</span>
+                                <span class="stat">4.7k Use</span>
+                                <span class="stat">127 Paid</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contribution Card 6 -->
+                    <div class="contribution-card">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/80x80/d1d5db/ffffff?text=Cat" alt="Cat dance">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Cat dance</h3>
+                            <span class="card-amount">$21.54</span>
+                            <div class="card-stats">
+                                <span class="stat">7.8k Popuparity</span>
+                                <span class="stat">4.7k Use</span>
+                                <span class="stat">127 Paid</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html> 

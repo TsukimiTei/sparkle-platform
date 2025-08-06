@@ -1,0 +1,476 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* Dashboard Layout */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px;
+    min-height: 100vh;
+}
+
+/* Left Sidebar */
+.sidebar {
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    padding: 2rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    margin-bottom: 2rem;
+}
+
+.platform-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: #000000;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-item.active {
+    background: #000000;
+    color: white;
+}
+
+.nav-item:hover:not(.active) {
+    background: #f3f4f6;
+}
+
+.nav-text {
+    font-weight: 500;
+}
+
+/* Main Dashboard Content */
+.main-dashboard {
+    padding: 2rem;
+    background: #ffffff;
+    overflow-y: auto;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #000000;
+}
+
+/* Earning Section */
+.earning-section {
+    margin-bottom: 3rem;
+}
+
+.earning-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Create Section */
+.create-section {
+    margin-bottom: 3rem;
+}
+
+.create-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.create-card {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-card:hover {
+    background: #e5e7eb;
+}
+
+.create-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+}
+
+/* Popular Effects Section */
+.popular-effects-section {
+    margin-bottom: 3rem;
+}
+
+.category-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.category-tab {
+    background: white;
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-tab.active {
+    background: #000000;
+    color: white;
+}
+
+.category-tab:hover:not(.active) {
+    background: #f3f4f6;
+}
+
+.category-content {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.category-subtitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #000000;
+}
+
+.category-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.create-category-btn {
+    background: #000000;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s ease;
+}
+
+.create-category-btn:hover {
+    background: #333333;
+}
+
+/* Effects Grid */
+.effects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.effect-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.effect-card.featured {
+    border: 2px solid #000000;
+}
+
+.video-thumbnail {
+    position: relative;
+    aspect-ratio: 3/4;
+    background: #d1d5db;
+    overflow: hidden;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: #000000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.rank-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #000000;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.earnings-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem;
+}
+
+.earning-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.total-earn, .today-earn {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.effect-info {
+    padding: 1rem;
+}
+
+.effect-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #000000;
+}
+
+.effect-stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.stat .stat-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.stat .stat-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Right Sidebar: Creator Rank */
+.rank-sidebar {
+    background: #ffffff;
+    border-left: 1px solid #e5e7eb;
+    padding: 2rem 1rem;
+}
+
+.rank-table {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.rank-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: #f3f4f6;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.rank-col {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+}
+
+.rank-list {
+    padding: 1rem;
+}
+
+.rank-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.rank-item:last-child {
+    border-bottom: none;
+}
+
+.creator-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.creator-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #d1d5db;
+}
+
+.creator-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #000000;
+}
+
+.rank-number {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .dashboard-container {
+        grid-template-columns: 200px 1fr 250px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar, .rank-sidebar {
+        display: none;
+    }
+    
+    .main-dashboard {
+        padding: 1rem;
+    }
+    
+    .earning-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .create-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .effects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .earning-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .effects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-tabs {
+        justify-content: center;
+    }
+    
+    .effect-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-dashboard {
+        padding: 0.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+    
+    .create-card {
+        padding: 1.5rem;
+    }
+    
+    .category-content {
+        padding: 1rem;
+    }
+} 
