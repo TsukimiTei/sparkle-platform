@@ -38,11 +38,49 @@
             <!-- Page Header -->
             <div class="page-header">
                 <h2 class="page-title">Create Your Effect</h2>
-                <p class="page-description">Upload your dataset and train a custom LoRA effect</p>
+                <p class="page-description">Choose your creation type and start building amazing effects</p>
             </div>
 
-            <!-- Create Form -->
-            <div class="create-form">
+            <!-- Creation Type Selection -->
+            <div class="creation-type-section">
+                <div class="type-selector">
+                    <div class="type-option active" data-type="lora" id="lora-option">
+                        <div class="type-icon">🎨</div>
+                        <div class="type-content">
+                            <h3>LoRA Effect</h3>
+                            <p>Upload your dataset and train a custom LoRA effect</p>
+                            <ul class="type-features">
+                                <li>• Upload 8-15 videos</li>
+                                <li>• AI-powered labeling</li>
+                                <li>• Custom training parameters</li>
+                                <li>• High-quality results</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="type-option" data-type="prompt" id="prompt-option">
+                        <div class="type-icon">✨</div>
+                        <div class="type-content">
+                            <h3>Prompt Video Effect</h3>
+                            <p>Create video effects using AI prompts and model images</p>
+                            <ul class="type-features">
+                                <li>• Select 3-5 model images</li>
+                                <li>• Write creative prompts</li>
+                                <li>• Generate videos instantly</li>
+                                <li>• Choose cover video</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="type-reset" id="type-reset" style="display: none;">
+                    <button class="more-info-btn" onclick="expandOptions()">
+                        <span class="more-info-text">Expand</span>
+                        <span class="more-info-icon">↓</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- LoRA Effect Creation Form -->
+            <div class="create-form" id="lora-form">
                 <!-- Step 1: Dataset Upload -->
                 <div class="form-section">
                     <div class="section-header">
@@ -209,6 +247,7 @@
                             </div>
                             <div class="status-progress">
                                 <div class="progress-bar">
+                                    
                                     <div class="progress-fill" id="progress-fill"></div>
                                 </div>
                                 <span class="progress-text" id="progress-text">0%</span>
@@ -224,6 +263,211 @@
                             <span class="btn-cost">500 credits</span>
                         </button>
                         <p class="submit-hint">Upload at least 8 videos and complete all required fields to start training</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompt Video Effect Creation Form -->
+            <div class="create-form" id="prompt-form" style="display: none;">
+                <!-- Step 1: Select Model Images -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="step-number">1</div>
+                        <h3 class="section-title">Select Model Images</h3>
+                        <div class="image-selection-status">
+                            <span class="selected-count" id="selected-count">0/5 images</span>
+                            <span class="selection-limit">Select 3-5 model images</span>
+                        </div>
+                    </div>
+                    
+                    <div class="image-gallery">
+                        <div class="gallery-header">
+                            <h4>Model Image Gallery</h4>
+                            <div class="gallery-controls">
+                                <input type="text" class="search-input" placeholder="Search images..." id="image-search">
+                                <select class="filter-select" id="image-filter">
+                                    <option value="all">All Categories</option>
+                                    <option value="portrait">Portrait</option>
+                                    <option value="landscape">Landscape</option>
+                                    <option value="action">Action</option>
+                                    <option value="artistic">Artistic</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-grid" id="gallery-grid">
+                            <!-- Images will be loaded dynamically -->
+                        </div>
+                        
+                        <div class="gallery-pagination">
+                            <button class="pagination-btn" id="prev-page">← Previous</button>
+                            <span class="page-info" id="page-info">Page 1 of 10</span>
+                            <button class="pagination-btn" id="next-page">Next →</button>
+                        </div>
+                    </div>
+
+                    <!-- Selected Images Preview -->
+                    <div class="selected-images" id="selected-images" style="display: none;">
+                        <h4>Selected Images (3-5)</h4>
+                        <div class="selected-grid" id="selected-grid">
+                            <!-- Selected images will be shown here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Write Prompt -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="step-number">2</div>
+                        <h3 class="section-title">Write Your Prompt</h3>
+                    </div>
+
+                    <div class="prompt-section">
+                        <div class="prompt-input-area">
+                            <label class="prompt-label">Describe your video effect</label>
+                            <textarea class="prompt-textarea" id="prompt-text" placeholder="Describe a dance move, visual effect, or any creative action you want to see in the video..."></textarea>
+                            <div class="prompt-examples">
+                                <h5>Example Prompts:</h5>
+                                <ul>
+                                    <li>"A graceful ballet dancer performing a pirouette in a sunlit studio"</li>
+                                    <li>"A martial artist executing a perfect roundhouse kick with energy effects"</li>
+                                    <li>"A painter creating a masterpiece with swirling colors and magical brushstrokes"</li>
+                                    <li>"A gymnast performing a backflip with sparkle effects"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="prompt-settings">
+                            <div class="setting-item">
+                                <label class="setting-label">Video Duration</label>
+                                <select class="setting-select" id="video-duration">
+                                    <option value="3">3 seconds</option>
+                                    <option value="5" selected>5 seconds</option>
+                                    <option value="8">8 seconds</option>
+                                    <option value="10">10 seconds</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label class="setting-label">Style Strength</label>
+                                <select class="setting-select" id="style-strength">
+                                    <option value="0.7">Subtle (0.7)</option>
+                                    <option value="0.8" selected>Balanced (0.8)</option>
+                                    <option value="0.9">Strong (0.9)</option>
+                                    <option value="1.0">Maximum (1.0)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Generate Videos -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="step-number">3</div>
+                        <h3 class="section-title">Generate Videos</h3>
+                    </div>
+
+                    <div class="generation-section">
+                        <div class="generation-controls">
+                            <button class="generate-btn" id="generate-btn" disabled>
+                                <span class="btn-icon">🎬</span>
+                                <span class="btn-text">Generate Videos</span>
+                                <span class="btn-cost">200 credits</span>
+                            </button>
+                            <p class="generate-hint">Select 3-5 images and write a prompt to start generation</p>
+                        </div>
+
+                        <!-- Generation Progress -->
+                        <div class="generation-progress" id="generation-progress" style="display: none;">
+                            <div class="progress-card">
+                                <div class="progress-header">
+                                    <h4>Generating Videos</h4>
+                                    <div class="progress-indicator">
+                                        <div class="spinner"></div>
+                                        <span id="progress-status">Processing...</span>
+                                    </div>
+                                </div>
+                                <div class="progress-details">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="prompt-progress-fill"></div>
+                                    </div>
+                                    <span class="progress-text" id="prompt-progress-text">0%</span>
+                                </div>
+                                <p class="progress-message">Generating videos from your selected images and prompt...</p>
+                            </div>
+                        </div>
+
+                        <!-- Generated Videos -->
+                        <div class="generated-videos" id="generated-videos" style="display: none;">
+                            <h4>Generated Videos</h4>
+                            <p class="videos-hint">Review the generated videos and select one as your cover video</p>
+                            <div class="videos-grid" id="videos-grid">
+                                <!-- Generated videos will be shown here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Publish Effect -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="step-number">4</div>
+                        <h3 class="section-title">Publish Effect</h3>
+                    </div>
+
+                    <div class="publish-section">
+                        <div class="publish-form">
+                            <div class="form-row">
+                                <div class="form-item">
+                                    <label class="form-label">Effect Name</label>
+                                    <input type="text" class="form-input" id="prompt-effect-name" placeholder="Enter your effect name">
+                                </div>
+                                <div class="form-item">
+                                    <label class="form-label">Category</label>
+                                    <select class="form-select" id="effect-category">
+                                        <option value="dance">Dance</option>
+                                        <option value="action">Action</option>
+                                        <option value="artistic">Artistic</option>
+                                        <option value="sports">Sports</option>
+                                        <option value="lifestyle">Lifestyle</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-textarea" id="effect-description" placeholder="Describe your effect and how users can use it..."></textarea>
+                            </div>
+                            <div class="form-item">
+                                <label class="form-label">Tags</label>
+                                <input type="text" class="form-input" id="effect-tags" placeholder="Enter tags separated by commas">
+                            </div>
+                        </div>
+
+                        <div class="publish-preview">
+                            <h4>Effect Preview</h4>
+                            <div class="preview-card">
+                                <div class="preview-video" id="preview-video">
+                                    <!-- Selected cover video will be shown here -->
+                                </div>
+                                <div class="preview-info">
+                                    <h5 id="preview-name">Effect Name</h5>
+                                    <p id="preview-description">Effect description will appear here</p>
+                                    <div class="preview-tags" id="preview-tags">
+                                        <!-- Tags will be shown here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Publish Button -->
+                        <div class="publish-actions">
+                            <button class="publish-btn" id="publish-btn" disabled>
+                                <span class="btn-icon">🚀</span>
+                                <span class="btn-text">Publish Effect</span>
+                            </button>
+                            <p class="publish-hint">Complete all fields and select a cover video to publish</p>
+                        </div>
                     </div>
                 </div>
             </div>

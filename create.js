@@ -1,16 +1,27 @@
 // Create Page JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    initCreationTypeSelection();
     initFileUpload();
     initFormValidation();
     initPreviewUpdates();
     initBatchLabeling();
     initTrainingStatus();
+    initPromptVideoEffect();
 });
 
 // Global variables
 let uploadedFileList = [];
 let labelingStatus = {}; // Track labeling status for each file
 let isTraining = false;
+
+// Prompt Video Effect variables
+let selectedImages = [];
+let currentPage = 1;
+let imagesPerPage = 12;
+let allImages = [];
+let generatedVideos = [];
+let selectedCoverVideo = null;
+let isGenerating = false;
 
 // File Upload Functionality
 function initFileUpload() {
@@ -459,4 +470,498 @@ function updateUploadCount() {
     const uploadCount = document.getElementById('upload-count');
     const count = uploadedFileList.length;
     uploadCount.textContent = `${count}/15 videos`;
+}
+
+// Creation Type Selection
+function initCreationTypeSelection() {
+    const loraOption = document.getElementById('lora-option');
+    const promptOption = document.getElementById('prompt-option');
+    const loraForm = document.getElementById('lora-form');
+    const promptForm = document.getElementById('prompt-form');
+
+    loraOption.addEventListener('click', () => {
+        loraOption.classList.add('active');
+        promptOption.classList.remove('active');
+        loraForm.style.display = 'block';
+        promptForm.style.display = 'none';
+        
+        // 折叠两个选项
+        collapseOptions();
+    });
+
+    promptOption.addEventListener('click', () => {
+        promptOption.classList.add('active');
+        loraOption.classList.remove('active');
+        promptForm.style.display = 'block';
+        loraForm.style.display = 'none';
+        loadImageGallery();
+        
+        // 折叠两个选项
+        collapseOptions();
+    });
+}
+
+// 折叠选项函数
+function collapseOptions() {
+    const loraOption = document.getElementById('lora-option');
+    const promptOption = document.getElementById('prompt-option');
+    
+    // 添加折叠类
+    loraOption.classList.add('collapsed');
+    promptOption.classList.add('collapsed');
+    
+    // 调整容器样式
+    const typeSelector = document.querySelector('.type-selector');
+    if (typeSelector) {
+        typeSelector.style.maxWidth = '600px';
+        typeSelector.style.gap = '1rem';
+    }
+    
+    // 显示More Info按钮
+    const typeReset = document.getElementById('type-reset');
+    if (typeReset) {
+        typeReset.style.display = 'block';
+        setTimeout(() => {
+            typeReset.classList.add('show');
+        }, 100);
+    }
+}
+
+// 展开选项函数（点击More Info后展开）
+function expandOptions() {
+    const loraOption = document.getElementById('lora-option');
+    const promptOption = document.getElementById('prompt-option');
+    
+    // 移除折叠类，恢复到初始展开状态
+    loraOption.classList.remove('collapsed');
+    promptOption.classList.remove('collapsed');
+    
+    // 恢复容器样式
+    const typeSelector = document.querySelector('.type-selector');
+    if (typeSelector) {
+        typeSelector.style.maxWidth = '800px';
+        typeSelector.style.gap = '1.5rem';
+    }
+    
+    // 隐藏More Info按钮
+    const typeReset = document.getElementById('type-reset');
+    if (typeReset) {
+        typeReset.classList.remove('show');
+        setTimeout(() => {
+            typeReset.style.display = 'none';
+        }, 300);
+    }
+}
+
+// Prompt Video Effect Functionality
+function initPromptVideoEffect() {
+    initImageGallery();
+    initPromptValidation();
+    initVideoGeneration();
+    initPublishEffect();
+}
+
+function initImageGallery() {
+    // Generate mock images for demonstration
+    generateMockImages();
+    
+    const searchInput = document.getElementById('image-search');
+    const filterSelect = document.getElementById('image-filter');
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+
+    searchInput.addEventListener('input', filterImages);
+    filterSelect.addEventListener('change', filterImages);
+    prevBtn.addEventListener('click', () => changePage(-1));
+    nextBtn.addEventListener('click', () => changePage(1));
+}
+
+function generateMockImages() {
+    const categories = ['portrait', 'landscape', 'action', 'artistic'];
+    const mockImages = [];
+    
+    for (let i = 1; i <= 120; i++) {
+        mockImages.push({
+            id: i,
+            url: `https://picsum.photos/300/300?random=${i}`,
+            category: categories[Math.floor(Math.random() * categories.length)],
+            name: `Model Image ${i}`,
+            tags: ['model', 'professional', 'high-quality']
+        });
+    }
+    
+    allImages = mockImages;
+    loadImageGallery();
+}
+
+function loadImageGallery() {
+    const galleryGrid = document.getElementById('gallery-grid');
+    const startIndex = (currentPage - 1) * imagesPerPage;
+    const endIndex = startIndex + imagesPerPage;
+    const pageImages = allImages.slice(startIndex, endIndex);
+    
+    galleryGrid.innerHTML = '';
+    
+    pageImages.forEach(image => {
+        const imageItem = document.createElement('div');
+        imageItem.className = 'gallery-item';
+        imageItem.dataset.imageId = image.id;
+        
+        const isSelected = selectedImages.some(img => img.id === image.id);
+        
+        imageItem.innerHTML = `
+            <img src="${image.url}" alt="${image.name}" loading="lazy">
+            ${isSelected ? '<div class="select-overlay">✓</div>' : ''}
+        `;
+        
+        imageItem.addEventListener('click', () => toggleImageSelection(image));
+        galleryGrid.appendChild(imageItem);
+    });
+    
+    updatePagination();
+    updateSelectedCount();
+}
+
+function toggleImageSelection(image) {
+    const imageItem = document.querySelector(`[data-image-id="${image.id}"]`);
+    const isSelected = selectedImages.some(img => img.id === image.id);
+    
+    if (isSelected) {
+        selectedImages = selectedImages.filter(img => img.id !== image.id);
+        imageItem.classList.remove('selected');
+        imageItem.querySelector('.select-overlay')?.remove();
+    } else {
+        if (selectedImages.length >= 5) {
+            alert('最多只能选择5张图片');
+            return;
+        }
+        selectedImages.push(image);
+        imageItem.classList.add('selected');
+        imageItem.innerHTML += '<div class="select-overlay">✓</div>';
+    }
+    
+    updateSelectedCount();
+    updateSelectedImagesPreview();
+    validatePromptForm();
+}
+
+function updateSelectedCount() {
+    const selectedCount = document.getElementById('selected-count');
+    selectedCount.textContent = `${selectedImages.length}/5 images`;
+}
+
+function updateSelectedImagesPreview() {
+    const selectedImagesDiv = document.getElementById('selected-images');
+    const selectedGrid = document.getElementById('selected-grid');
+    
+    if (selectedImages.length > 0) {
+        selectedImagesDiv.style.display = 'block';
+        selectedGrid.innerHTML = '';
+        
+        selectedImages.forEach(image => {
+            const item = document.createElement('div');
+            item.className = 'selected-item';
+            item.innerHTML = `
+                <img src="${image.url}" alt="${image.name}">
+                <button class="remove-btn" onclick="removeSelectedImage(${image.id})">✕</button>
+            `;
+            selectedGrid.appendChild(item);
+        });
+    } else {
+        selectedImagesDiv.style.display = 'none';
+    }
+}
+
+function removeSelectedImage(imageId) {
+    selectedImages = selectedImages.filter(img => img.id !== imageId);
+    updateSelectedCount();
+    updateSelectedImagesPreview();
+    loadImageGallery(); // Refresh gallery to update selection state
+    validatePromptForm();
+}
+
+// Global function for removing selected images
+window.removeSelectedImage = removeSelectedImage;
+
+function filterImages() {
+    const searchTerm = document.getElementById('image-search').value.toLowerCase();
+    const filterValue = document.getElementById('image-filter').value;
+    
+    const filteredImages = allImages.filter(image => {
+        const matchesSearch = image.name.toLowerCase().includes(searchTerm) || 
+                            image.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+        const matchesFilter = filterValue === 'all' || image.category === filterValue;
+        
+        return matchesSearch && matchesFilter;
+    });
+    
+    // Update displayed images
+    const galleryGrid = document.getElementById('gallery-grid');
+    galleryGrid.innerHTML = '';
+    
+    filteredImages.slice(0, imagesPerPage).forEach(image => {
+        const imageItem = document.createElement('div');
+        imageItem.className = 'gallery-item';
+        imageItem.dataset.imageId = image.id;
+        
+        const isSelected = selectedImages.some(img => img.id === image.id);
+        
+        imageItem.innerHTML = `
+            <img src="${image.url}" alt="${image.name}" loading="lazy">
+            ${isSelected ? '<div class="select-overlay">✓</div>' : ''}
+        `;
+        
+        imageItem.addEventListener('click', () => toggleImageSelection(image));
+        galleryGrid.appendChild(imageItem);
+    });
+}
+
+function changePage(direction) {
+    const totalPages = Math.ceil(allImages.length / imagesPerPage);
+    currentPage = Math.max(1, Math.min(totalPages, currentPage + direction));
+    loadImageGallery();
+}
+
+function updatePagination() {
+    const totalPages = Math.ceil(allImages.length / imagesPerPage);
+    const pageInfo = document.getElementById('page-info');
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+}
+
+// Prompt Validation
+function initPromptValidation() {
+    const promptText = document.getElementById('prompt-text');
+    const generateBtn = document.getElementById('generate-btn');
+    
+    promptText.addEventListener('input', validatePromptForm);
+}
+
+function validatePromptForm() {
+    const promptText = document.getElementById('prompt-text');
+    const generateBtn = document.getElementById('generate-btn');
+    
+    const hasImages = selectedImages.length >= 3 && selectedImages.length <= 5;
+    const hasPrompt = promptText.value.trim().length > 0;
+    
+    generateBtn.disabled = !hasImages || !hasPrompt || isGenerating;
+}
+
+// Video Generation
+function initVideoGeneration() {
+    const generateBtn = document.getElementById('generate-btn');
+    generateBtn.addEventListener('click', generateVideos);
+}
+
+function generateVideos() {
+    if (isGenerating) return;
+    
+    isGenerating = true;
+    const generateBtn = document.getElementById('generate-btn');
+    const generationProgress = document.getElementById('generation-progress');
+    const progressFill = document.getElementById('prompt-progress-fill');
+    const progressText = document.getElementById('prompt-progress-text');
+    const progressStatus = document.getElementById('progress-status');
+    
+    generateBtn.disabled = true;
+    generationProgress.style.display = 'block';
+    
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(progressInterval);
+            
+            setTimeout(() => {
+                generationProgress.style.display = 'none';
+                generateVideosFromImages();
+                isGenerating = false;
+                generateBtn.disabled = false;
+            }, 500);
+        }
+        
+        progressFill.style.width = `${progress}%`;
+        progressText.textContent = `${Math.round(progress)}%`;
+        
+        if (progress < 30) {
+            progressStatus.textContent = 'Analyzing images...';
+        } else if (progress < 60) {
+            progressStatus.textContent = 'Generating videos...';
+        } else if (progress < 90) {
+            progressStatus.textContent = 'Processing effects...';
+        } else {
+            progressStatus.textContent = 'Finalizing...';
+        }
+    }, 200);
+}
+
+function generateVideosFromImages() {
+    const promptText = document.getElementById('prompt-text').value;
+    const duration = document.getElementById('video-duration').value;
+    const styleStrength = document.getElementById('style-strength').value;
+    
+    generatedVideos = [];
+    
+    // Generate mock videos for each selected image
+    selectedImages.forEach((image, index) => {
+        const videoId = `video-${Date.now()}-${index}`;
+        const mockVideoUrl = `https://sample-videos.com/zip/10/mp4/SampleVideo_${(index % 5) + 1}_1280x720_1mb.mp4`;
+        
+        generatedVideos.push({
+            id: videoId,
+            imageId: image.id,
+            imageUrl: image.url,
+            videoUrl: mockVideoUrl,
+            prompt: promptText,
+            duration: duration,
+            styleStrength: styleStrength
+        });
+    });
+    
+    displayGeneratedVideos();
+}
+
+function displayGeneratedVideos() {
+    const generatedVideosDiv = document.getElementById('generated-videos');
+    const videosGrid = document.getElementById('videos-grid');
+    
+    generatedVideosDiv.style.display = 'block';
+    videosGrid.innerHTML = '';
+    
+    generatedVideos.forEach(video => {
+        const videoItem = document.createElement('div');
+        videoItem.className = 'video-item';
+        videoItem.dataset.videoId = video.id;
+        
+        videoItem.innerHTML = `
+            <video src="${video.videoUrl}" controls>
+                Your browser does not support the video tag.
+            </video>
+        `;
+        
+        videoItem.addEventListener('click', () => selectCoverVideo(video));
+        videosGrid.appendChild(videoItem);
+    });
+}
+
+function selectCoverVideo(video) {
+    selectedCoverVideo = video;
+    
+    // Update UI to show selection
+    document.querySelectorAll('.video-item').forEach(item => {
+        item.classList.remove('selected');
+        item.querySelector('.select-overlay')?.remove();
+    });
+    
+    const selectedItem = document.querySelector(`[data-video-id="${video.id}"]`);
+    selectedItem.classList.add('selected');
+    selectedItem.innerHTML += '<div class="select-overlay">✓</div>';
+    
+    // Update preview
+    updatePublishPreview();
+    validatePublishForm();
+}
+
+// Publish Effect
+function initPublishEffect() {
+    const effectName = document.getElementById('prompt-effect-name');
+    const effectDescription = document.getElementById('effect-description');
+    const effectTags = document.getElementById('effect-tags');
+    const publishBtn = document.getElementById('publish-btn');
+    
+    effectName.addEventListener('input', () => {
+        validatePublishForm();
+        updatePublishPreview();
+    });
+    effectDescription.addEventListener('input', () => {
+        validatePublishForm();
+        updatePublishPreview();
+    });
+    effectTags.addEventListener('input', () => {
+        validatePublishForm();
+        updatePublishPreview();
+    });
+    
+    publishBtn.addEventListener('click', publishEffect);
+}
+
+function validatePublishForm() {
+    const effectName = document.getElementById('prompt-effect-name');
+    const effectDescription = document.getElementById('effect-description');
+    const effectTags = document.getElementById('effect-tags');
+    const publishBtn = document.getElementById('publish-btn');
+    
+    const hasName = effectName.value.trim().length > 0;
+    const hasDescription = effectDescription.value.trim().length > 0;
+    const hasTags = effectTags.value.trim().length > 0;
+    const hasCoverVideo = selectedCoverVideo !== null;
+    
+    publishBtn.disabled = !hasName || !hasDescription || !hasTags || !hasCoverVideo;
+}
+
+function updatePublishPreview() {
+    const effectName = document.getElementById('prompt-effect-name');
+    const effectDescription = document.getElementById('effect-description');
+    const effectTags = document.getElementById('effect-tags');
+    
+    const previewName = document.getElementById('preview-name');
+    const previewDescription = document.getElementById('preview-description');
+    const previewTags = document.getElementById('preview-tags');
+    const previewVideo = document.getElementById('preview-video');
+    
+    previewName.textContent = effectName.value.trim() || 'Effect Name';
+    previewDescription.textContent = effectDescription.value.trim() || 'Effect description will appear here';
+    
+    // Update tags
+    const tags = effectTags.value.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+    previewTags.innerHTML = tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    
+    // Update video preview
+    if (selectedCoverVideo) {
+        previewVideo.innerHTML = `
+            <video src="${selectedCoverVideo.videoUrl}" controls style="width: 100%; height: 100%; object-fit: cover;">
+                Your browser does not support the video tag.
+            </video>
+        `;
+    }
+}
+
+function publishEffect() {
+    const effectName = document.getElementById('prompt-effect-name').value;
+    const effectCategory = document.getElementById('effect-category').value;
+    const effectDescription = document.getElementById('effect-description').value;
+    const effectTags = document.getElementById('effect-tags').value;
+    
+    if (!selectedCoverVideo) {
+        alert('请选择一个封面视频');
+        return;
+    }
+    
+    // Create effect object
+    const promptEffect = {
+        id: `prompt-${Date.now()}`,
+        name: effectName,
+        category: effectCategory,
+        description: effectDescription,
+        tags: effectTags.split(',').map(tag => tag.trim()),
+        coverVideo: selectedCoverVideo,
+        selectedImages: selectedImages,
+        prompt: document.getElementById('prompt-text').value,
+        createdAt: new Date().toISOString(),
+        status: 'published'
+    };
+    
+    // Save to localStorage (in a real app, this would be sent to server)
+    const existingEffects = JSON.parse(localStorage.getItem('promptEffects') || '[]');
+    existingEffects.push(promptEffect);
+    localStorage.setItem('promptEffects', JSON.stringify(existingEffects));
+    
+    // Show success message and redirect
+    alert('Prompt Effect 发布成功！正在跳转到 My Effects 页面...');
+    window.location.href = 'my-effects.html';
 } 

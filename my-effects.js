@@ -258,4 +258,138 @@ function updateCardCounts() {
 }
 
 // Call update counts on page load
-document.addEventListener('DOMContentLoaded', updateCardCounts); 
+document.addEventListener('DOMContentLoaded', updateCardCounts);
+
+// Load Prompt Effects from localStorage
+function loadPromptEffects() {
+    const promptEffects = JSON.parse(localStorage.getItem('promptEffects') || '[]');
+    const promptContent = document.getElementById('prompt-content');
+    
+    if (promptContent) {
+        // Clear existing content
+        promptContent.innerHTML = '';
+        
+        if (promptEffects.length === 0) {
+            promptContent.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-icon">✨</div>
+                    <h3>No Prompt Effects Yet</h3>
+                    <p>Create your first prompt video effect to get started</p>
+                    <a href="create.html" class="btn btn-primary">Create Prompt Effect</a>
+                </div>
+            `;
+            return;
+        }
+        
+        // Create table structure for prompt effects
+        const tableStructure = `
+            <div class="table-header">
+                <div class="header-cell cover">Cover</div>
+                <div class="header-cell name">Name</div>
+                <div class="header-cell category">Category</div>
+                <div class="header-cell prompt">Prompt</div>
+                <div class="header-cell status">Status</div>
+                <div class="header-cell action">Action</div>
+            </div>
+            <div class="effects-list" id="prompt-effects-list">
+                <!-- Prompt effects will be loaded here -->
+            </div>
+        `;
+        
+        promptContent.innerHTML = tableStructure;
+        
+        // Load each prompt effect
+        const effectsList = document.getElementById('prompt-effects-list');
+        promptEffects.forEach(effect => {
+            const effectRow = createPromptEffectRow(effect);
+            effectsList.appendChild(effectRow);
+        });
+    }
+}
+
+// Create a prompt effect row
+function createPromptEffectRow(effect) {
+    const row = document.createElement('div');
+    row.className = 'effect-row prompt-effect';
+    row.dataset.effectId = effect.id;
+    
+    row.innerHTML = `
+        <div class="row-cell cover">
+            <div class="video-thumbnail">
+                <video src="${effect.coverVideo.videoUrl}" muted loop>
+                    Your browser does not support the video tag.
+                </video>
+                <div class="play-overlay">▶</div>
+            </div>
+        </div>
+        <div class="row-cell name">
+            <span class="effect-name">${effect.name}</span>
+        </div>
+        <div class="row-cell category">
+            <span class="category-badge">${effect.category}</span>
+        </div>
+        <div class="row-cell prompt">
+            <span class="prompt-text">${effect.prompt}</span>
+        </div>
+        <div class="row-cell status">
+            <span class="status-text ${effect.status}">${effect.status}</span>
+        </div>
+        <div class="row-cell action">
+            <button class="btn btn-outline" onclick="viewPromptEffect('${effect.id}')">View</button>
+            <button class="btn btn-danger" onclick="deletePromptEffect('${effect.id}')">Delete</button>
+        </div>
+    `;
+    
+    return row;
+}
+
+// View prompt effect details
+function viewPromptEffect(effectId) {
+    const promptEffects = JSON.parse(localStorage.getItem('promptEffects') || '[]');
+    const effect = promptEffects.find(e => e.id === effectId);
+    
+    if (effect) {
+        // Create modal or navigate to detail page
+        alert(`Viewing ${effect.name}\n\nPrompt: ${effect.prompt}\nCategory: ${effect.category}\nStatus: ${effect.status}`);
+    }
+}
+
+// Delete prompt effect
+function deletePromptEffect(effectId) {
+    if (confirm('Are you sure you want to delete this prompt effect?')) {
+        const promptEffects = JSON.parse(localStorage.getItem('promptEffects') || '[]');
+        const updatedEffects = promptEffects.filter(e => e.id !== effectId);
+        localStorage.setItem('promptEffects', JSON.stringify(updatedEffects));
+        
+        // Reload prompt effects
+        loadPromptEffects();
+    }
+}
+
+// Enhanced Effect Type Tabs with Prompt Effect support
+function initEffectTypeTabs() {
+    const effectTabs = document.querySelectorAll('.effect-tab');
+    const effectContents = document.querySelectorAll('.effect-content');
+
+    effectTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetType = this.getAttribute('data-type');
+            
+            // Remove active class from all tabs and contents
+            effectTabs.forEach(t => t.classList.remove('active'));
+            effectContents.forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            this.classList.add('active');
+            const targetContent = document.getElementById(`${targetType}-content`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                
+                // Load prompt effects if switching to prompt tab
+                if (targetType === 'prompt') {
+                    loadPromptEffects();
+                }
+            }
+        });
+    });
+} 
